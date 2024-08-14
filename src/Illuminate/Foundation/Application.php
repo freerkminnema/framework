@@ -876,6 +876,14 @@ class Application extends Container implements ApplicationContract, CachesConfig
             }
         }
 
+        if (property_exists($provider, 'scoped')) {
+            foreach ($provider->scoped as $key => $value) {
+                $key = is_int($key) ? $value : $key;
+
+                $this->scoped($key, $value);
+            }
+        }
+
         if (property_exists($provider, 'singletons')) {
             foreach ($provider->singletons as $key => $value) {
                 $key = is_int($key) ? $value : $key;
